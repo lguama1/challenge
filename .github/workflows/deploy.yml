@@ -40,6 +40,26 @@ jobs:
           npm run build
 
   ## ------------------------
+  ## 🚀 CD: Deploy IaC
+  ## ------------------------
+
+  cd-iac:
+    needs: ci
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::006217752323:role/rolGitHub
+          aws-region: us-east-1
+          audience: "sts.amazonaws.com"
+
+  ## ------------------------
   ## 🚀 CD: Deploy Backend
   ## ------------------------
   # cd-backend:
