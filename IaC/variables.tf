@@ -5,5 +5,5 @@ variable "aws_region" {
 
 variable "project_name" {
   description = "Nombre del proyecto"
-  default     = "gestion-accesos/recursos"
+  default     = "portal-challenge"
 }
