@@ -155,7 +155,7 @@ jobs:
       - name: Build frontend
         run: |
           cd welcome-portal-app-web-ui
-          npm run build && npm run export
+          npm run build
       
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
