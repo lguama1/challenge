@@ -10,3 +10,8 @@ terraform {
 provider "aws" {
   region = "us-east-1"
 }
+
+module "frontend" {
+  source       = "./modules/frontend"
+  project_name = var.project_name
+}
