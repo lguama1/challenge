@@ -58,6 +58,32 @@ jobs:
           role-to-assume: arn:aws:iam::006217752323:role/rolGitHub
           aws-region: us-east-1
           audience: "sts.amazonaws.com"
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.7.0"
+
+      - name: Terraform Init
+        run: terraform init
+        working-directory: IaC
+
+      - name: Terraform Validate
+        run: terraform validate
+        working-directory: IaC
+
+      - name: Terraform Plan
+        run: terraform plan 
+        working-directory: IaC
+
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/main'
+        run: terraform apply -auto-approve
+        working-directory: IaC
+
+      - name: Terraform Output
+        if: github.ref == 'refs/heads/main'
+        run: terraform output -json
+        working-directory: IaC
 
   ## ------------------------
   ## 🚀 CD: Deploy Backend
