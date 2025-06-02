@@ -147,12 +147,14 @@ jobs:
 
       - name: Install frontend dependencies
         run: |
-          cd frontend
+          cd welcome-portal-app-web-ui
           npm ci
+        env:
+          BDB_TOKEN: ${{ secrets.BDB_TOKEN }}
 
       - name: Build frontend
         run: |
-          cd frontend
+          cd welcome-portal-app-web-ui
           npm run build && npm run export
       
       - name: Configure AWS credentials
@@ -164,7 +166,7 @@ jobs:
 
       - name: Deploy to S3
         run: |
-          aws s3 sync frontend/out s3://portal-challenge-frontend --delete
+          aws s3 sync welcome-portal-app-web-ui/out s3://portal-challenge-frontend --delete
 
       - name: Invalidate CloudFront
         run: |
