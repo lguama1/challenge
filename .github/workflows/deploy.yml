@@ -26,6 +26,8 @@ jobs:
         run: |
           cd ${{ matrix.project }}
           npm ci
+        env:
+          BDB_TOKEN: ${{ secrets.BDB_TOKEN }}
 
       - name: Lint
         run: |
