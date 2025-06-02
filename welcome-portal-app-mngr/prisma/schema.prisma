@@ -1,0 +1,68 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model UserRequest {
+  id        String   @id @default(cuid())
+  name      String                             
+  email     String                             
+  area      String                           
+  role      String
+  team      String                          
+  status    String
+  createdAt DateTime @default(now())
+}
+
+model User {
+  id        String   @id @default(cuid())       
+  name      String                               
+  email     String   @unique    
+  team      String                
+  area      String                               
+  role      String                              
+  createdAt DateTime @default(now())            
+}
+
+model AccessRequest {
+  id              String         @id @default(cuid())
+  userId          String                                       
+  requestedAccess String                                     
+  status          String
+  team            String      
+  createdAt       DateTime      @default(now())
+}
+
+model Computer {
+  id              String   @id @default(cuid())
+  serialNumber    String   @unique
+  operatingSystem String
+  createdAt       DateTime @default(now())
+}
+
+model ComputerRequest {
+  id              String   @id @default(cuid())
+  userId          String
+  requestedSystem String
+  team            String
+  status          String
+  createdAt       DateTime @default(now())
+}
+
+model ComputerAssignment {
+  id          String   @id @default(cuid())
+  computerId  String
+  userId      String
+  deliveredAt DateTime?
+}
+

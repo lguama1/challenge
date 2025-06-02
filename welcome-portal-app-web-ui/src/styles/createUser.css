@@ -1,0 +1,39 @@
+.container-form {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    justify-self: center;
+    gap: 40px;
+}
+
+.container-labels-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 24px;
+}
+
+.button-form {
+    width: fit-content;
+    align-self: flex-end;
+}
+
+.title-form {
+    display: flex;
+    width: 70%;
+    justify-self: center;
+    padding-top: 40px;
+    padding-bottom: 28px;
+}
+
+.access-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(3, 1fr); /* valor por defecto para pantallas grandes */
+}
+
+@media (max-width: 450px) {
+  .access-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

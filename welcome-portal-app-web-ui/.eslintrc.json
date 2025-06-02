@@ -1,0 +1,29 @@
+{
+    "extends": ["plugin:@next/eslint-plugin-next/recommended", "plugin:@typescript-eslint/recommended"],
+    "rules": {
+      "@typescript-eslint/no-unused-vars": "warn",
+      "@typescript-eslint/no-explicit-any": "warn",
+      "@typescript-eslint/explicit-module-boundary-types": "off",
+      "@typescript-eslint/array-type": ["error", { "default": "array" }], 
+      "arrow-parens": ["error", "as-needed"], 
+      "max-len": ["error", { "code": 140 }],
+      "no-empty": "off",
+      "quotes": ["error", "single", { "avoidEscape": true }],
+      "no-trailing-spaces": "error",
+      "sort-imports": ["error", { "ignoreCase": true, "ignoreDeclarationSort": true }],
+      "comma-dangle": ["error", "never"],
+      "@typescript-eslint/no-non-null-assertion": "error",
+      "no-use-before-define": "off",
+      "@typescript-eslint/no-use-before-define": ["error"],
+      "object-curly-spacing": ["error", "always"]
+    },
+    "overrides": [
+      {
+        "files": ["src/utils/constants/**/*.{ts,tsx}"], 
+        "rules": {
+          "max-len": "off"
+        }
+      }
+    ]
+  }
+  

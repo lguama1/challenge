@@ -1,0 +1,110 @@
+$font-family-path: '' !default;
+
+//********** Roboto Fonts ************//
+
+$RobotoLight: Roboto-Light;
+$RobotoRegular: Roboto-Regular;
+$RobotoMedium: Roboto-Medium;
+$RobotoBold: Roboto-Bold;
+$RobotoItalic: Roboto-Italic;
+$RobotoMediumItalic: Roboto-MediumItalic;
+
+@font-face {
+    font-family: Roboto-Light;
+    src: url("#{$font-family-path}/assets/fonts/roboto/Roboto-Light.ttf");
+    font-display: swap
+}
+
+@font-face {
+    font-family: Roboto-Regular;
+    src: url("#{$font-family-path}/assets/fonts/roboto/Roboto-Regular.ttf");
+    font-display: swap
+}
+
+@font-face {
+    font-family: Roboto-Medium;
+    src: url("#{$font-family-path}/assets/fonts/roboto/Roboto-Medium.ttf");
+    font-display: swap
+}
+
+@font-face {
+    font-family: Roboto-Bold;
+    src: url("#{$font-family-path}/assets/fonts/roboto/Roboto-Bold.ttf");
+    font-display: swap
+}
+
+@font-face {
+    font-family: Roboto-Italic;
+    src: url("#{$font-family-path}/assets/fonts/roboto/Roboto-Italic.ttf");
+    font-display: swap
+}
+
+@font-face {
+    font-family: Roboto-MediumItalic;
+    src: url("#{$font-family-path}/assets/fonts/roboto/Roboto-MediumItalic.ttf");
+    font-display: swap
+}
+
+//********** Montserrat Fonts ************//
+
+$MontserratRegular: Montserrat-Regular;
+$MontserratSemiBold: Montserrat-SemiBold;
+
+@font-face {
+    font-family: Montserrat-Regular;
+    src: url("#{$font-family-path}/assets/fonts/montserrat/Montserrat-Regular.ttf");
+    font-display: swap
+}
+
+@font-face {
+    font-family: Montserrat-SemiBold;
+    src: url("#{$font-family-path}/assets/fonts/montserrat/Montserrat-SemiBold.ttf");
+    font-display: swap
+}
+
+
+//********** Kiffo Fonts ************//
+
+$KiffoExtraLight: Kiffo-ExtraLight;
+$KiffoLight: Kiffo-Light;
+$KiffoRegular: Kiffo-Regular;
+$KiffoMedium: Kiffo-Medium;
+$KiffoSemiBold: Kiffo-SemiBold;
+$KiffoThin: Kiffo-Thin;
+
+
+@font-face {
+    font-family: Kiffo-Light;
+    src: url("#{$font-family-path}/assets/fonts/kiffo/Kiffo-Light.otf");
+    font-display: swap
+}
+
+@font-face {
+    font-family: Kiffo-ExtraLight;
+    src: url("#{$font-family-path}/assets/fonts/kiffo/Kiffo-ExtraLight.otf");
+    font-display: swap
+}
+
+@font-face {
+    font-family:  Kiffo-Regular;
+    src: url("#{$font-family-path}/assets/fonts/kiffo/Kiffo-Regular.otf");
+    font-display: swap
+}
+
+@font-face {
+    font-family: Kiffo-Medium;
+    src: url("#{$font-family-path}/assets/fonts/kiffo/Kiffo-Medium.otf");
+    font-display: swap
+}
+
+@font-face {
+    font-family: Kiffo-SemiBold;
+    src: url("#{$font-family-path}/assets/fonts/kiffo/Kiffo-SemiBold.otf");
+    font-display: swap
+}
+
+@font-face {
+    font-family: Kiffo-Thin;
+    src: url("#{$font-family-path}/assets/fonts/kiffo/Kiffo-Thin.otf");
+    font-display: swap
+}

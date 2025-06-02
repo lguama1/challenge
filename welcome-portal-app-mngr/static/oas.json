@@ -1,0 +1,562 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Challenge API",
+    "version": "v1",
+    "description": "A sample API to manage coding, user, access, and computer requests."
+  },
+  "servers": [
+    {
+      "url": "https://api.challenge.com"
+    },
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/v1/user-requests": {
+      "post": {
+        "summary": "Create a new user request",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRequestInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User request created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserRequestResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/user-requests/:id": {
+      "patch": {
+        "summary": "Update user request status",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "approved",
+                      "rejected"
+                    ]
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User request updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserRequestResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/users": {
+      "get": {
+        "summary": "Get list of users",
+        "responses": {
+          "200": {
+            "description": "List of users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/access-requests": {
+      "post": {
+        "summary": "Create a new access request",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccessRequestInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Access request created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessRequestResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/access-requests/:id": {
+      "patch": {
+        "summary": "Update access request status",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "approved",
+                      "rejected"
+                    ]
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Access request updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessRequestResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/computer-requests": {
+      "post": {
+        "summary": "Create a new computer request",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComputerRequestInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Computer request created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComputerRequestResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/computer-requests/:id": {
+      "patch": {
+        "summary": "Update computer request status",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "approved",
+                      "rejected"
+                    ]
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Computer request updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComputerRequestResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/history/requests": {
+      "get": {
+        "summary": "Get request history",
+        "responses": {
+          "200": {
+            "description": "List of past requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RequestHistory"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/computers/team": {
+      "get": {
+        "summary": "Get team computers",
+        "responses": {
+          "200": {
+            "description": "List of computers assigned to the team",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TeamComputer"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+  }
+  },
+  "components": {
+    "schemas": {
+      "UserRequestInput": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 150
+          },
+          "email": {
+            "type": "string"
+          },
+          "area": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 150
+          },
+          "role": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 150
+          }
+        },
+        "required": [
+          "name",
+          "email",
+          "area",
+          "role"
+        ]
+      },
+      "UserRequestResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "area": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "team": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "approved",
+              "rejected"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "team": {
+            "type": "string"
+          },
+          "area": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "AccessRequestInput": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "requestedAccess": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "GitHub",
+                "Grafana",
+                "SonarCloud",
+                "Jira",
+                "AWS",
+                "Confluence"
+              ]
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "email",
+          "requestedAccess"
+        ]
+      },
+      "AccessRequestResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "requestedAccess": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "approved",
+              "rejected"
+            ]
+          },
+          "team": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ComputerRequestInput": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "requestedSystem": {
+            "type": "string",
+            "enum": [
+              "Windows",
+              "macOS",
+              "Linux"
+            ]
+          }
+        },
+        "required": [
+          "email",
+          "requestedSystem"
+        ]
+      },
+      "ComputerRequestResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "requestedSystem": {
+            "type": "string"
+          },
+          "team": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "approved",
+              "rejected"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "RequestHistory": {
+        "type": "object",
+        "properties": {
+          "owner": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "typeOfRequest": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "approved",
+              "rejected"
+            ]
+          },
+          "id": {
+            "type": "string"
+          }
+        }
+      },
+      "TeamComputer": {
+        "type": "object",
+        "properties": {
+          "owner": {
+            "type": "string",
+            "example": "john.two@example.com"
+          },
+          "deliveryDate": {
+            "type": ["string", "null"],
+            "format": "date-time",
+            "example": "2025-06-02T15:47:47.313Z"
+          },
+          "serialNumber": {
+            "type": "string",
+            "example": "SN001"
+          },
+          "system": {
+            "type": "string",
+            "enum": ["Windows", "macOS", "Linux"],
+            "example": "Windows"
+          }
+        },
+        "required": ["owner", "deliveryDate", "serialNumber", "system"]
+      }
+    }
+  }
+}

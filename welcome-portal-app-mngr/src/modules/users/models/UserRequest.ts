@@ -1,0 +1,12 @@
+export type RequestStatus = 'pending' | 'approved' | 'rejected';
+
+export interface IUserRequest {
+  id: string;
+  name: string;
+  email: string;
+  area: string;
+  role: string;
+  team: string;
+  status: RequestStatus;
+  createdAt: Date;
+} 

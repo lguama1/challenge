@@ -1,0 +1,60 @@
+{
+  "name": "welcome-portal-app-mngr",
+  "version": "1.0.0",
+  "description": "Manager para gestionar recursos y accesos",
+  "private": true,
+  "main": "dist/bin/www.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && export DEBUG=bdb:* && node ./build/bin/www.js",
+    "dev": "nodemon --watch src -e ts,js --exec npm start",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "fix:all": "npm run lint:fix",
+    "debug": "DEBUG=* node ./build/bin/www.js",
+    "clean": "rm -rf build .scannerwork"
+  },
+  "keywords": [
+    "typescript",
+    "express",
+    "js",
+    "ts",
+    "node-js"
+  ],
+  "author": "Lina Guamanga",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^6.8.2",
+    "aws-serverless-express": "^3.4.0",
+    "cors": "^2.8.5",
+    "debug": "^4.4.0",
+    "express": "^5.1.0",
+    "express-intercept": "^1.1.1",
+    "express-openapi-validate": "^0.6.1",
+    "reflect-metadata": "^0.2.2",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/debug": "^4.1.12",
+    "@types/express": "^5.0.1",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^22.15.29",
+    "@types/uuid": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.29.1",
+    "@typescript-eslint/parser": "^8.29.1",
+    "eslint": "^9.24.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-promise": "^7.2.1",
+    "eslint-plugin-unused-imports": "^4.1.4",
+    "globals": "^16.0.0",
+    "nodemon": "^3.1.9",
+    "nyc": "^17.1.0",
+    "prisma": "^6.8.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  }
+}
