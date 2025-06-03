@@ -23,8 +23,8 @@ resource "aws_lambda_function" "portal_challenge_mngr" {
   role             = aws_iam_role.lambda_exec.arn
   handler          = var.handler
   runtime          = var.runtime
-  filename         = var.source_path
-  source_code_hash = filebase64sha256(var.source_path)
+  filename         = "../${path.root}/${var.source_path}"
+  source_code_hash = filebase64sha256("../${path.root}/${var.source_path}")
 
   environment {
     variables = var.environment_variables

@@ -17,7 +17,6 @@ variable "runtime" {
 variable "source_path" {
   type        = string
   description = "Ruta al archivo zip del código fuente"
-  default     = "lambda.zip"
 }
 
 variable "environment_variables" {
