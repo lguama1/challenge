@@ -81,6 +81,7 @@ jobs:
           cp -r build/* lambda/
           cp package.json lambda/
           cp index.js lambda/
+          cp prisma/schema.prisma lambda/prisma/schema.prisma
           cd lambda
           npm install --only=prod
           npx prisma generate
