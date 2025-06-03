@@ -19,6 +19,9 @@ resource "aws_api_gateway_deployment" "deployment_app_challenge" {
   triggers = {
     redeploy_hash = base64sha256(data.template_file.oas.rendered)
   }
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "aws_api_gateway_stage" "prod" {
