@@ -11,7 +11,7 @@ UserController.get(
   async (req: Request, res: Response) => {
     try {
       const users = await UserService.getAllUsers({
-        team: 'team' // TODO: obtain from token
+        team: 'team'
       });
       res.status(200).json(users);
     } catch (error) {

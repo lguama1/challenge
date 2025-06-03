@@ -27,9 +27,8 @@ ComputerController.get(
   validator.validate('get', '/v1/computers/team'),
   async (req: Request, res: Response) => {
     try {
-      // TODO: Get team from token
       const computers = await ComputerService.getAllComputersForTeam({
-        team: 'team' // Hardcoded for now, will be replaced with token value
+        team: 'team'
       });
       res.status(200).json(computers);
     } catch (error) {

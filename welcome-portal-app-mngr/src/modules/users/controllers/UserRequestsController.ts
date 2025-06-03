@@ -10,7 +10,6 @@ UserRequestsController.post(
   validator.validate('post', '/v1/user-requests'),
   async (req: Request, res: Response) => {
     try {
-      // TODO extract team
       const { name, email, area, role } = req.body;
       const userRequest = await UserRequestsService.createUserRequest({
         name,

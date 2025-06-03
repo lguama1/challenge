@@ -10,9 +10,8 @@ HistoryController.get(
   validator.validate('get', '/v1/history/requests'),
   async (req: Request, res: Response) =>{
     try {
-      // TODO: Get team from token
       const requests = await HistoryService.getAllRequests({
-        team: 'team' // Hardcoded for now, will be replaced with token value
+        team: 'team'
       });
        res.status(200).json(requests);
     } catch (error) {

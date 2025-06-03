@@ -26,7 +26,7 @@ export const OPTIONS_ROL = [
   { text: 'Tester', value: '05' },
   { text: 'Product Owner', value: '06' },
   { text: 'Agile', value: '07' },
-  { text: 'Diseñador', value: '07' }
+  { text: 'Diseñador', value: '08' }
 ];
 
 export const OPTIONS_ACCESS_ROLE = {
@@ -36,7 +36,8 @@ export const OPTIONS_ACCESS_ROLE = {
   'Lider': ['GitHub', 'SonarCloud', 'AWS', 'Grafana', 'Jira', 'Confluence'],
   'Tester': ['GitHub', 'SonarCloud', 'AWS', 'Grafana', 'Jira', 'Confluence'],
   'Product Owner': ['Grafana', 'Jira', 'Confluence'],
-  'Diseñador': ['Jira', 'Confluence']
+  'Diseñador': ['Jira', 'Confluence'],
+  'Agile': ['Jira', 'Confluence']
 };
 
 export const TABS_LAPTOPS_ALLOCATION = [
