@@ -147,6 +147,9 @@ jobs:
         run: |
           cd welcome-portal-app-web-ui
           npm run build
+        env:
+          NEXT_PUBLIC_API_URL: https://45k2wnkw19.execute-api.us-east-1.amazonaws.com/prod/
+          NEXT_PUBLIC_ENVIRONMENT: PROD
       
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
