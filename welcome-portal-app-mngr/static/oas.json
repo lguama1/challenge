@@ -44,7 +44,51 @@
           "httpMethod": "POST",
           "uri": "arn:aws:apigateway:${region}:lambda:path/2015-03-31/functions/${lambda_arn}/invocations"
         }
+      },
+      "options": {
+  "summary": "CORS support",
+  "responses": {
+    "204": {
+      "description": "No content",
+      "headers": {
+        "Access-Control-Allow-Headers": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Access-Control-Allow-Methods": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Access-Control-Allow-Origin": {
+          "schema": {
+            "type": "string"
+          }
+        }
       }
+    }
+  },
+  "x-amazon-apigateway-integration": {
+    "type": "mock",
+    "requestTemplates": {
+      "application/json": "{ \"statusCode\": 204 }"
+    },
+    "responses": {
+      "default": {
+        "statusCode": "204",
+        "responseParameters": {
+          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization'",
+          "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS'",
+          "method.response.header.Access-Control-Allow-Origin": "'*'"
+        },
+        "responseTemplates": {
+          "application/json": ""
+        }
+      }
+    }
+  }
+}
     },
     "/v1/user-requests/:id": {
       "patch": {
@@ -98,7 +142,52 @@
           "httpMethod": "POST",
           "uri": "arn:aws:apigateway:${region}:lambda:path/2015-03-31/functions/${lambda_arn}/invocations"
         }
+      },
+      "options": {
+  "summary": "CORS support",
+  "responses": {
+    "204": {
+      "description": "No content",
+      "headers": {
+        "Access-Control-Allow-Headers": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Access-Control-Allow-Methods": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Access-Control-Allow-Origin": {
+          "schema": {
+            "type": "string"
+          }
+        }
       }
+    }
+  },
+  "x-amazon-apigateway-integration": {
+    "type": "mock",
+    "requestTemplates": {
+      "application/json": "{ \"statusCode\": 204 }"
+    },
+    "responses": {
+      "default": {
+        "statusCode": "204",
+        "responseParameters": {
+          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization'",
+          "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS'",
+          "method.response.header.Access-Control-Allow-Origin": "'*'"
+        },
+        "responseTemplates": {
+          "application/json": ""
+        }
+      }
+    }
+  }
+}
+
     },
     "/v1/users": {
       "get": {
@@ -123,7 +212,52 @@
           "httpMethod": "POST",
           "uri": "arn:aws:apigateway:${region}:lambda:path/2015-03-31/functions/${lambda_arn}/invocations"
         }
+      },
+      "options": {
+  "summary": "CORS support",
+  "responses": {
+    "204": {
+      "description": "No content",
+      "headers": {
+        "Access-Control-Allow-Headers": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Access-Control-Allow-Methods": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Access-Control-Allow-Origin": {
+          "schema": {
+            "type": "string"
+          }
+        }
       }
+    }
+  },
+  "x-amazon-apigateway-integration": {
+    "type": "mock",
+    "requestTemplates": {
+      "application/json": "{ \"statusCode\": 204 }"
+    },
+    "responses": {
+      "default": {
+        "statusCode": "204",
+        "responseParameters": {
+          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization'",
+          "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS'",
+          "method.response.header.Access-Control-Allow-Origin": "'*'"
+        },
+        "responseTemplates": {
+          "application/json": ""
+        }
+      }
+    }
+  }
+}
+
     },
     "/v1/access-requests": {
       "post": {
@@ -155,7 +289,52 @@
           "httpMethod": "POST",
           "uri": "arn:aws:apigateway:${region}:lambda:path/2015-03-31/functions/${lambda_arn}/invocations"
         }
+      },
+      "options": {
+  "summary": "CORS support",
+  "responses": {
+    "204": {
+      "description": "No content",
+      "headers": {
+        "Access-Control-Allow-Headers": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Access-Control-Allow-Methods": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Access-Control-Allow-Origin": {
+          "schema": {
+            "type": "string"
+          }
+        }
       }
+    }
+  },
+  "x-amazon-apigateway-integration": {
+    "type": "mock",
+    "requestTemplates": {
+      "application/json": "{ \"statusCode\": 204 }"
+    },
+    "responses": {
+      "default": {
+        "statusCode": "204",
+        "responseParameters": {
+          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization'",
+          "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS'",
+          "method.response.header.Access-Control-Allow-Origin": "'*'"
+        },
+        "responseTemplates": {
+          "application/json": ""
+        }
+      }
+    }
+  }
+}
+
     },
     "/v1/access-requests/:id": {
       "patch": {
@@ -209,7 +388,52 @@
           "httpMethod": "POST",
           "uri": "arn:aws:apigateway:${region}:lambda:path/2015-03-31/functions/${lambda_arn}/invocations"
         }
+      },
+      "options": {
+  "summary": "CORS support",
+  "responses": {
+    "204": {
+      "description": "No content",
+      "headers": {
+        "Access-Control-Allow-Headers": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Access-Control-Allow-Methods": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Access-Control-Allow-Origin": {
+          "schema": {
+            "type": "string"
+          }
+        }
       }
+    }
+  },
+  "x-amazon-apigateway-integration": {
+    "type": "mock",
+    "requestTemplates": {
+      "application/json": "{ \"statusCode\": 204 }"
+    },
+    "responses": {
+      "default": {
+        "statusCode": "204",
+        "responseParameters": {
+          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization'",
+          "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS'",
+          "method.response.header.Access-Control-Allow-Origin": "'*'"
+        },
+        "responseTemplates": {
+          "application/json": ""
+        }
+      }
+    }
+  }
+}
+
     },
     "/v1/computer-requests": {
       "post": {
@@ -241,7 +465,52 @@
           "httpMethod": "POST",
           "uri": "arn:aws:apigateway:${region}:lambda:path/2015-03-31/functions/${lambda_arn}/invocations"
         }
+      },
+      "options": {
+  "summary": "CORS support",
+  "responses": {
+    "204": {
+      "description": "No content",
+      "headers": {
+        "Access-Control-Allow-Headers": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Access-Control-Allow-Methods": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Access-Control-Allow-Origin": {
+          "schema": {
+            "type": "string"
+          }
+        }
       }
+    }
+  },
+  "x-amazon-apigateway-integration": {
+    "type": "mock",
+    "requestTemplates": {
+      "application/json": "{ \"statusCode\": 204 }"
+    },
+    "responses": {
+      "default": {
+        "statusCode": "204",
+        "responseParameters": {
+          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization'",
+          "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS'",
+          "method.response.header.Access-Control-Allow-Origin": "'*'"
+        },
+        "responseTemplates": {
+          "application/json": ""
+        }
+      }
+    }
+  }
+}
+
     },
     "/v1/computer-requests/:id": {
       "patch": {
@@ -295,7 +564,52 @@
           "httpMethod": "POST",
           "uri": "arn:aws:apigateway:${region}:lambda:path/2015-03-31/functions/${lambda_arn}/invocations"
         }
+      },
+      "options": {
+  "summary": "CORS support",
+  "responses": {
+    "204": {
+      "description": "No content",
+      "headers": {
+        "Access-Control-Allow-Headers": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Access-Control-Allow-Methods": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Access-Control-Allow-Origin": {
+          "schema": {
+            "type": "string"
+          }
+        }
       }
+    }
+  },
+  "x-amazon-apigateway-integration": {
+    "type": "mock",
+    "requestTemplates": {
+      "application/json": "{ \"statusCode\": 204 }"
+    },
+    "responses": {
+      "default": {
+        "statusCode": "204",
+        "responseParameters": {
+          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization'",
+          "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS'",
+          "method.response.header.Access-Control-Allow-Origin": "'*'"
+        },
+        "responseTemplates": {
+          "application/json": ""
+        }
+      }
+    }
+  }
+}
+
     },
     "/v1/history/requests": {
       "get": {
@@ -320,7 +634,52 @@
           "httpMethod": "POST",
           "uri": "arn:aws:apigateway:${region}:lambda:path/2015-03-31/functions/${lambda_arn}/invocations"
         }
+      },
+      "options": {
+  "summary": "CORS support",
+  "responses": {
+    "204": {
+      "description": "No content",
+      "headers": {
+        "Access-Control-Allow-Headers": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Access-Control-Allow-Methods": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Access-Control-Allow-Origin": {
+          "schema": {
+            "type": "string"
+          }
+        }
       }
+    }
+  },
+  "x-amazon-apigateway-integration": {
+    "type": "mock",
+    "requestTemplates": {
+      "application/json": "{ \"statusCode\": 204 }"
+    },
+    "responses": {
+      "default": {
+        "statusCode": "204",
+        "responseParameters": {
+          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization'",
+          "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS'",
+          "method.response.header.Access-Control-Allow-Origin": "'*'"
+        },
+        "responseTemplates": {
+          "application/json": ""
+        }
+      }
+    }
+  }
+}
+
     },
     "/v1/computers/team": {
       "get": {
@@ -345,7 +704,52 @@
           "httpMethod": "POST",
           "uri": "arn:aws:apigateway:${region}:lambda:path/2015-03-31/functions/${lambda_arn}/invocations"
         }
+      },
+      "options": {
+  "summary": "CORS support",
+  "responses": {
+    "204": {
+      "description": "No content",
+      "headers": {
+        "Access-Control-Allow-Headers": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Access-Control-Allow-Methods": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Access-Control-Allow-Origin": {
+          "schema": {
+            "type": "string"
+          }
+        }
       }
+    }
+  },
+  "x-amazon-apigateway-integration": {
+    "type": "mock",
+    "requestTemplates": {
+      "application/json": "{ \"statusCode\": 204 }"
+    },
+    "responses": {
+      "default": {
+        "statusCode": "204",
+        "responseParameters": {
+          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization'",
+          "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS'",
+          "method.response.header.Access-Control-Allow-Origin": "'*'"
+        },
+        "responseTemplates": {
+          "application/json": ""
+        }
+      }
+    }
+  }
+}
+
     }
   },
   "components": {
