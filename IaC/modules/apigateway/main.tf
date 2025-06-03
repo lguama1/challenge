@@ -17,7 +17,7 @@ resource "aws_api_gateway_deployment" "deployment_app_challenge" {
   rest_api_id = aws_api_gateway_rest_api.apigateway_app_challenge.id
 
   triggers = {
-    redeploy_hash = filebase64sha256(data.template_file.oas.rendered)
+    redeploy_hash = base64sha256(data.template_file.oas.rendered)
   }
 }
 
