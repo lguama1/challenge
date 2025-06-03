@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
+import config from './config';
 import TransformErrors from './middlewares/TransformErrors';
 import { UserRequestsController } from './modules/users/controllers/UserRequestsController';
 import { UserController } from './modules/users/controllers/UserController';
@@ -10,7 +11,9 @@ import { ComputerRequestsController } from './modules/computers/controllers/Comp
 import { HistoryController } from './modules/history/controllers/HistoryController';
 
 const app = express();
-const fullApiPath = `v1`;
+
+const { API_PATH } = config;
+const fullApiPath = `${API_PATH}v1`;
 
 const corsOptions = {
     origin: '*', // NOSONAR
