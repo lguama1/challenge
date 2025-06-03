@@ -83,6 +83,7 @@ jobs:
           cp index.js lambda/
           cd lambda
           npm install --only=prod
+          npx prisma generate
           zip -r ../../lambda.zip .
 
       - name: Setup Terraform
