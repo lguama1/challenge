@@ -78,7 +78,8 @@ jobs:
         run: |
           cd welcome-portal-app-mngr
           mkdir lambda
-          cp -r build/* lambda/
+          mkdir lambda/build
+          cp -r build/* lambda/build/
           cp package.json lambda/
           cp index.js lambda/
           mkdir -p lambda/prisma
