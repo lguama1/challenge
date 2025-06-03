@@ -78,8 +78,8 @@
       "default": {
         "statusCode": "204",
         "responseParameters": {
-          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization'",
-          "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS'",
+          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-RqUID'",
+          "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS,PATCH'",
           "method.response.header.Access-Control-Allow-Origin": "'*'"
         },
         "responseTemplates": {
@@ -176,8 +176,8 @@
       "default": {
         "statusCode": "204",
         "responseParameters": {
-          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization'",
-          "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS'",
+          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-RqUID'",
+          "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS,PATCH'",
           "method.response.header.Access-Control-Allow-Origin": "'*'"
         },
         "responseTemplates": {
@@ -246,8 +246,8 @@
       "default": {
         "statusCode": "204",
         "responseParameters": {
-          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization'",
-          "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS'",
+          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-RqUID'",
+          "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS,PATCH'",
           "method.response.header.Access-Control-Allow-Origin": "'*'"
         },
         "responseTemplates": {
@@ -323,8 +323,8 @@
       "default": {
         "statusCode": "204",
         "responseParameters": {
-          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization'",
-          "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS'",
+          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-RqUID'",
+          "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS,PATCH'",
           "method.response.header.Access-Control-Allow-Origin": "'*'"
         },
         "responseTemplates": {
@@ -422,8 +422,8 @@
       "default": {
         "statusCode": "204",
         "responseParameters": {
-          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization'",
-          "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS'",
+          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-RqUID'",
+          "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS,PATCH'",
           "method.response.header.Access-Control-Allow-Origin": "'*'"
         },
         "responseTemplates": {
@@ -499,8 +499,8 @@
       "default": {
         "statusCode": "204",
         "responseParameters": {
-          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization'",
-          "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS'",
+          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-RqUID'",
+          "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS,PATCH'",
           "method.response.header.Access-Control-Allow-Origin": "'*'"
         },
         "responseTemplates": {
@@ -598,8 +598,8 @@
       "default": {
         "statusCode": "204",
         "responseParameters": {
-          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization'",
-          "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS'",
+          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-RqUID'",
+          "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS,PATCH'",
           "method.response.header.Access-Control-Allow-Origin": "'*'"
         },
         "responseTemplates": {
@@ -668,8 +668,8 @@
       "default": {
         "statusCode": "204",
         "responseParameters": {
-          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization'",
-          "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS'",
+          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-RqUID'",
+          "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS,PATCH'",
           "method.response.header.Access-Control-Allow-Origin": "'*'"
         },
         "responseTemplates": {
@@ -738,8 +738,8 @@
       "default": {
         "statusCode": "204",
         "responseParameters": {
-          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization'",
-          "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS'",
+          "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-RqUID'",
+          "method.response.header.Access-Control-Allow-Methods": "'GET,POST,OPTIONS,PATCH'",
           "method.response.header.Access-Control-Allow-Origin": "'*'"
         },
         "responseTemplates": {
