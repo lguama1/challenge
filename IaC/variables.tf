@@ -7,3 +7,16 @@ variable "project_name" {
   description = "Nombre del proyecto"
   default     = "portal-challenge"
 }
+
+variable "db_username" {
+  default = "admin"
+}
+
+variable "db_password" {
+  description = "DB master password"
+  sensitive   = true
+}
+
+variable "my_ip" {
+  description = "Your public IP address with /32 mask"
+}
