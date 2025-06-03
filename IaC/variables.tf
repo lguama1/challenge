@@ -9,7 +9,7 @@ variable "project_name" {
 }
 
 variable "db_username" {
-  default = "admin"
+  default = "postgres"
 }
 
 variable "db_password" {

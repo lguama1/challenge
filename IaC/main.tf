@@ -21,3 +21,15 @@ module "rds" {
   db_username  = var.db_username
   db_password  = var.db_password
 }
+
+module "lambda_backend" {
+  source      = "./modules/lambda"
+  lambda_name = "portal-challenge-mngr"
+  source_path = "lambda.zip"
+  handler     = "index.handler"
+  environment_variables = {
+    DB_HOST     = "tu-db-endpoint"
+    DB_USER     = "postgres"
+    DB_PASSWORD = var.db_password
+  }
+}
