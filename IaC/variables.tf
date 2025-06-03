@@ -16,7 +16,3 @@ variable "db_password" {
   description = "DB master password"
   sensitive   = true
 }
-
-variable "my_ip" {
-  description = "Your public IP address with /32 mask"
-}
