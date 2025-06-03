@@ -43,14 +43,14 @@ resource "aws_security_group" "rds_sg" {
 }
 
 resource "aws_db_instance" "postgres" {
-  identifier         = "${var.project_name}-db"
-  engine             = "postgres"
-  engine_version     = "15.4"
-  instance_class     = "db.t3.micro"
-  allocated_storage  = 20
-  db_name            = "accesos"
-  username           = var.db_username
-  password           = var.db_password
+  identifier          = "${var.project_name}-db"
+  engine              = "postgres"
+  engine_version      = "15.4"
+  instance_class      = "db.t3.micro"
+  allocated_storage   = 20
+  db_name             = "accesos"
+  username            = var.db_username
+  password            = var.db_password
   publicly_accessible = true
 
   vpc_security_group_ids = [aws_security_group.rds_sg.id]
