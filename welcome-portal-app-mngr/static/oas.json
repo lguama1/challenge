@@ -90,7 +90,7 @@
   }
 }
     },
-    "/v1/user-requests/:id": {
+    "/v1/user-requests/{id}": {
       "patch": {
         "summary": "Update user request status",
         "parameters": [
@@ -336,7 +336,7 @@
 }
 
     },
-    "/v1/access-requests/:id": {
+    "/v1/access-requests/{id}": {
       "patch": {
         "summary": "Update access request status",
         "parameters": [
@@ -512,7 +512,7 @@
 }
 
     },
-    "/v1/computer-requests/:id": {
+    "/v1/computer-requests/{id}": {
       "patch": {
         "summary": "Update computer request status",
         "parameters": [

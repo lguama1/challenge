@@ -33,7 +33,7 @@ UserRequestsController.post(
 
 UserRequestsController.patch(
   '/user-requests/:id',
-  validator.validate('patch', '/v1/user-requests/:id'),
+  validator.validate('patch', '/v1/user-requests/{id}'),
   async (req: Request, res: Response) =>{
     try {
       const { id } = req.params;

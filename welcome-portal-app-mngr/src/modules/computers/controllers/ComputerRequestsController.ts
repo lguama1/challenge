@@ -38,7 +38,7 @@ ComputerRequestsController.post(
 
 ComputerRequestsController.patch(
   '/computer-requests/:id',
-  validator.validate('patch', '/v1/computer-requests/:id'),
+  validator.validate('patch', '/v1/computer-requests/{id}'),
   async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
