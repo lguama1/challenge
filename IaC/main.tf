@@ -28,9 +28,10 @@ module "lambda_backend" {
   source_path = "lambda.zip"
   handler     = "index.handler"
   environment_variables = {
-    DB_HOST     = "tu-db-endpoint"
-    DB_USER     = "postgres"
-    DB_PASSWORD = var.db_password
+    DB_HOST      = "tu-db-endpoint"
+    DB_USER      = "postgres"
+    DB_PASSWORD  = var.db_password
+    DATABASE_URL = var.database_url
   }
 }
 
