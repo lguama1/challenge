@@ -81,9 +81,16 @@ jobs:
           cp -r build/* lambda/
           cp package.json lambda/
           cp index.js lambda/
+          mkdir -p lambda/prisma
+          cp prisma/schema.prisma lambda/prisma/schema.prisma
           cd lambda
           npm install --only=prod
+          npx prisma generate
           zip -r ../../lambda.zip .
+
+      - name: Upload ZIP to S3
+        run: |
+          aws s3 cp lambda.zip s3://challenges-lambdas-buckets-zips-mngr/lambda.zip
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3

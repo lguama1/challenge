@@ -19,13 +19,13 @@ resource "aws_iam_role_policy_attachment" "basic_execution" {
 }
 
 resource "aws_lambda_function" "portal_challenge_mngr" {
-  function_name    = var.lambda_name
-  role             = aws_iam_role.lambda_exec.arn
-  handler          = var.handler
-  runtime          = var.runtime
-  filename         = "../${path.root}/${var.source_path}"
-  source_code_hash = filebase64sha256("../${path.root}/${var.source_path}")
+  function_name = var.lambda_name
+  role          = aws_iam_role.lambda_exec.arn
+  handler       = var.handler
+  runtime       = var.runtime
 
+  s3_bucket = aws_s3_bucket.lambda_buckets_zips.bucket
+  s3_key    = "lambda.zip"
   environment {
     variables = var.environment_variables
   }
