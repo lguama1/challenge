@@ -83,6 +83,8 @@ jobs:
           cp index.js lambda/
           mkdir -p lambda/prisma
           cp prisma/schema.prisma lambda/prisma/schema.prisma
+          mkdir -p lambda/static
+          cp static/oas.json lambda/static/oas.json
           cd lambda
           npm install --only=prod
           npx prisma generate

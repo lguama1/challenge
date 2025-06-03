@@ -36,7 +36,7 @@ resource "aws_lambda_function" "portal_challenge_mngr" {
 
 
 resource "aws_s3_bucket" "lambda_buckets_zips" {
-  bucket = "challenges-lambdas-buckets-zips-mngr" # Change to a globally unique bucket name
+  bucket = "challenges-lambdas-buckets-zips-mngr"
 
   tags = {
     Name        = "Lambda Deployment Bucket"
