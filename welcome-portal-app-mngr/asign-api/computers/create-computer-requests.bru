@@ -1,0 +1,18 @@
+meta {
+  name: create-computer-requests
+  type: http
+  seq: 4
+}
+
+post {
+  url: https://45k2wnkw19.execute-api.us-east-1.amazonaws.com/prod/v1/computer-requests
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "email": "john.two@example.com",
+    "requestedSystem": "Windows"
+  }
+}

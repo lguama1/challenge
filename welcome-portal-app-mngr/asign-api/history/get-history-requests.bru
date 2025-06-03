@@ -1,0 +1,11 @@
+meta {
+  name: get-history-requests
+  type: http
+  seq: 4
+}
+
+get {
+  url: https://45k2wnkw19.execute-api.us-east-1.amazonaws.com/prod/v1/history/requests
+  body: json
+  auth: inherit
+}

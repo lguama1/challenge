@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "asign-api",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

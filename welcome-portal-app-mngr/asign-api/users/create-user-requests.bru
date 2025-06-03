@@ -1,0 +1,20 @@
+meta {
+  name: create-user-requests
+  type: http
+  seq: 4
+}
+
+post {
+  url: https://45k2wnkw19.execute-api.us-east-1.amazonaws.com/prod/v1/user-requests
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "John Doe",
+    "email": "john.two@example.com",
+    "area": "Engineering",
+    "role": "Software Developer"
+  }
+}
