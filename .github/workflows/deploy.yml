@@ -85,7 +85,6 @@ jobs:
           cp prisma/schema.prisma lambda/prisma/schema.prisma
           cd lambda
           npm install --only=prod
-          npx prisma generate
           zip -r ../../lambda.zip .
 
       - name: Setup Terraform

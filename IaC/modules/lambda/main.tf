@@ -33,3 +33,13 @@ resource "aws_lambda_function" "portal_challenge_mngr" {
   timeout     = 10
   memory_size = 128
 }
+
+
+resource "aws_s3_bucket" "lambda_buckets_zips" {
+  bucket = "challenges-lambdas-buckets-zips-mngr" # Change to a globally unique bucket name
+
+  tags = {
+    Name        = "Lambda Deployment Bucket"
+    Environment = "prod"
+  }
+}
