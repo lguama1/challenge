@@ -81,8 +81,6 @@ jobs:
           cp -r build/* lambda/
           cp package.json lambda/
           cp index.js lambda/
-          mkdir -p lambda/prisma
-          cp prisma/schema.prisma lambda/prisma/schema.prisma
           cd lambda
           npm install --only=prod
           zip -r ../../lambda.zip .
