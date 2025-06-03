@@ -33,3 +33,10 @@ module "lambda_backend" {
     DB_PASSWORD = var.db_password
   }
 }
+
+module "apigateway" {
+  source        = "./modules/apigateway"
+  api_name      = "api-portal-challenge"
+  oas_file_path = "${path.module}/modules/apigateway/oas.yaml"
+  lambda        = module.lambda_backend
+}
