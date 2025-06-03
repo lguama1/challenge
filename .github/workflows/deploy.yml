@@ -110,7 +110,7 @@ jobs:
         run: terraform apply -auto-approve
         env:
           TF_VAR_db_password: ${{ secrets.DB_PASSWORD }}
-          F_VAR_database_url: ${{ secrets.DATABASE_URL}}
+          TF_VAR_database_url: ${{ secrets.DATABASE_URL}}
         working-directory: IaC
 
       - name: Terraform Output
