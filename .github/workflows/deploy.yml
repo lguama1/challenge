@@ -80,6 +80,7 @@ jobs:
           mkdir lambda
           cp -r build/* lambda/
           cp package.json lambda/
+          cp index.js lambda/
           cd lambda
           npm install --only=prod
           zip -r ../../lambda.zip .
