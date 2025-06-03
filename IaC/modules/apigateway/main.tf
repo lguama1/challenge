@@ -9,7 +9,7 @@ resource "aws_lambda_permission" "api" {
   action        = "lambda:InvokeFunction"
   function_name = var.lambda.create_portal_challenge_lambda.function_name
   principal     = "apigateway.amazonaws.com"
-  source_arn    = "${aws_apigatewayv2_api.api.execution_arn}/*/*"
+  source_arn    = "${aws_api_gateway_rest_api.apigateway_app_challenge.execution_arn}/*/*"
 }
 
 resource "aws_api_gateway_deployment" "deployment_app_challenge" {
