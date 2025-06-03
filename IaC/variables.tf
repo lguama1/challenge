@@ -16,3 +16,8 @@ variable "db_password" {
   description = "DB master password"
   sensitive   = true
 }
+
+variable "database_url" {
+  description = "DB master password"
+  sensitive   = true
+}

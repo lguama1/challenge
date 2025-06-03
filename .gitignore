@@ -23,3 +23,5 @@ override.tf.json
 
 # Ignore local-only configuration
 .terraform.lock.hcl
+
+.env
