@@ -6,4 +6,8 @@ export interface IUser {
    area: string;
    role: string;
    createdAt: Date;
-} 
+}
+
+export interface GetAllUsersOptions {
+  team: string;
+}

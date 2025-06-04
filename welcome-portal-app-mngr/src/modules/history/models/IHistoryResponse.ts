@@ -5,4 +5,8 @@ export interface IHistoryResponse {
   status: string;
   userId: string;
   id: string;
-} 
+}
+
+export interface GetAllHistoryOptions {
+  team: string;
+}

@@ -1,6 +1,7 @@
 import { Request, Response, Router } from 'express';
 import { AccessRequestsService } from '../services/AccessRequestsService';
 import OpenApiValidatorProvider from '../../../utils/OpenApiValidatorProvider';
+import { sendHttpError } from '../../../utils/ErrorHandler';
 
 const AccessRequestsController = Router();
 const validator = OpenApiValidatorProvider.getValidator();
@@ -19,11 +20,7 @@ AccessRequestsController.post(
 
       res.status(201).json(accessRequest);
     } catch (error) {
-      console.error('Error in createAccessRequest controller:', error);
-      res.status(500).json({
-        error: 'Internal server error',
-        message: error instanceof Error ? error.message : 'Unknown error occurred'
-      });
+      sendHttpError(res, error)
     }
   }
 )
@@ -43,11 +40,7 @@ AccessRequestsController.patch(
 
       res.status(200).json(accessRequest);
     } catch (error) {
-      console.error('Error in updateAccessRequestStatus controller:', error);
-      res.status(500).json({
-        error: 'Internal server error',
-        message: error instanceof Error ? error.message : 'Unknown error occurred'
-      });
+      sendHttpError(res, error)
     }
 })
 

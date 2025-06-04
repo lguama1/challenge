@@ -1,32 +1,21 @@
 import { PrismaClient } from '@prisma/client';
-import { IAccessRequest, IAccessRequestResponse } from '../models/IAccessRequest';
+import {
+  CreateAccessRequestDTO,
+  GetAllAccessRequestsOptions,
+  IAccessRequest,
+  IAccessRequestResponse,
+  UpdateAccessRequestStatusDTO } from '../models/IAccessRequest';
 import { RequestStatus } from '../../access-requests/models/IAccessRequest';
 import { UserService } from '../../users/services/UserService';
 import { IUser } from '../../users/models/User';
+import { HandleServiceError } from '../../../utils/ErrorHandler';
 
 const prisma = new PrismaClient();
-
-interface CreateAccessRequestDTO {
-  email: string;
-  requestedAccess: string[];
-}
-
-interface GetAllAccessRequestsOptions {
-  team: string;
-}
-
-interface UpdateAccessRequestStatusDTO {
-  id: string;
-  status: RequestStatus.APPROVED | RequestStatus.REJECTED;
-}
 
 export class AccessRequestsService {
   public static async createAccessRequest(data: CreateAccessRequestDTO): Promise<IAccessRequest> {
     try {
       const user = await UserService.getUserByEmail(data.email);
-      if (!user) {
-        throw new Error(`user not found`);
-      }
 
       const accessRequest = await prisma.accessRequest.create({
         data: {
@@ -43,7 +32,8 @@ export class AccessRequestsService {
         status: accessRequest.status as RequestStatus
       };
     } catch (error) {
-      throw new Error(`Error creating access request: ${error}`);
+      console.error('Error in createAccessRequest', error);
+      throw HandleServiceError(error)  
     }
   }
 
@@ -75,7 +65,8 @@ export class AccessRequestsService {
         status: request.status as RequestStatus
       }));
     } catch (error) {
-      throw new Error(`Error fetching access requests: ${error}`);
+      console.error('Error in getAllAccessRequests', error);
+      throw HandleServiceError(error)  
     }
   }
 
@@ -97,7 +88,8 @@ export class AccessRequestsService {
         status: accessRequest.status as RequestStatus
       };
     } catch (error) {
-      throw new Error(`Error updating access request status: ${error}`);
+      console.error('Error in updateAccessRequestStatus', error);
+      throw HandleServiceError(error)  
     }
   }
 } 

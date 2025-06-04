@@ -11,3 +11,14 @@ export interface IComputerAssignment {
     deliveredAt?: Date
     userId: string
 }
+
+export interface GetAllComputerUsersOptions {
+    team: string;
+  }
+  
+export interface ComputerAssignmentResult {
+  owner: string;
+  serialNumber: string;
+  system: string;
+  deliveryDate: Date | null;
+}

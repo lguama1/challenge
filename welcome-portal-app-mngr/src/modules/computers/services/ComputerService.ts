@@ -1,20 +1,10 @@
 import { PrismaClient } from '@prisma/client';
 import { IUser } from '../../users/models/User';
 import { UserService } from '../../users/services/UserService';
-import { IComputer } from '../models/IComputer';
+import { ComputerAssignmentResult, GetAllComputerUsersOptions, IComputer } from '../models/IComputer';
+import { HandleServiceError } from '../../../utils/ErrorHandler';
 
 const prisma = new PrismaClient();
-
-interface GetAllComputerUsersOptions {
-    team: string;
-  }
-  
-interface ComputerAssignmentResult {
-  owner: string;
-  serialNumber: string;
-  system: string;
-  deliveryDate: Date | null;
-}
 
 export class ComputerService {
   public static async getAllComputers() {
@@ -26,11 +16,13 @@ export class ComputerService {
       });
       return computers;
     } catch (error) {
-      throw new Error(`Error fetching computers: ${error}`);
+     console.error('Error in getAllComputers', error);
+    throw HandleServiceError(error)    
     }
   }
 
- public static async getAllComputersForTeam(options: GetAllComputerUsersOptions): Promise<ComputerAssignmentResult[]> {
+ public static async getAllComputersForTeam(options: GetAllComputerUsersOptions):
+  Promise<ComputerAssignmentResult[]> {
     try {
       const { team } = options;
 
@@ -75,7 +67,8 @@ export class ComputerService {
 
       return results;
     } catch (error) {
-      throw new Error(`Error fetching computers for team: ${error}`);
+      console.error('Error in getAllComputersForTeam', error);
+      throw HandleServiceError(error)
     }
   }
 } 

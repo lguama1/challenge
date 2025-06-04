@@ -21,4 +21,18 @@ export interface IAccessRequestResponse {
   team: string;
   status: RequestStatus;
   createdAt: Date;
-} 
+}
+
+export interface CreateAccessRequestDTO {
+  email: string;
+  requestedAccess: string[];
+}
+
+export interface GetAllAccessRequestsOptions {
+  team: string;
+}
+
+export interface UpdateAccessRequestStatusDTO {
+  id: string;
+  status: RequestStatus.APPROVED | RequestStatus.REJECTED;
+}

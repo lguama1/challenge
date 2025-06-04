@@ -1,6 +1,7 @@
 import { Request, Response, Router } from 'express';
 import { UserRequestsService } from '../services/UserRequestsService';
 import OpenApiValidatorProvider from '../../../utils/OpenApiValidatorProvider';
+import { sendHttpError } from '../../../utils/ErrorHandler';
 
 const UserRequestsController = Router();
 const validator = OpenApiValidatorProvider.getValidator();
@@ -21,11 +22,7 @@ UserRequestsController.post(
 
       res.status(201).json(userRequest);
     } catch (error) {
-      console.error('Error in createUserRequest controller:', error);
-      res.status(500).json({
-        error: 'Internal server error',
-        message: error instanceof Error ? error.message : 'Unknown error occurred'
-      });
+      sendHttpError(res, error)
     }
   }
 )
@@ -45,11 +42,7 @@ UserRequestsController.patch(
 
       res.status(200).json(userRequest);
     } catch (error) {
-      console.error('Error in updateUserRequestStatus controller:', error);
-      res.status(500).json({
-        error: 'Internal server error',
-        message: error instanceof Error ? error.message : 'Unknown error occurred'
-      });
+      sendHttpError(res, error)
     }
   }
 )

@@ -2,6 +2,7 @@ import { Request, Response, Router } from 'express';
 import { ComputerRequestsService } from '../services/ComputerRequestsService';
 import { RequestStatus } from '../models/IComputerRequest';
 import OpenApiValidatorProvider from '../../../utils/OpenApiValidatorProvider';
+import { sendHttpError } from '../../../utils/ErrorHandler';
 
 const ComputerRequestsController = Router();
 const validator = OpenApiValidatorProvider.getValidator();
@@ -27,11 +28,7 @@ ComputerRequestsController.post(
 
       res.status(201).json(computerRequest);
     } catch (error) {
-      console.error('Error in createComputerRequest controller:', error);
-      res.status(500).json({
-        error: 'Internal server error',
-        message: error instanceof Error ? error.message : 'Unknown error occurred'
-      });
+      sendHttpError(res, error)
     }
   }
 )
@@ -65,11 +62,7 @@ ComputerRequestsController.patch(
 
       res.status(200).json(computerRequest);
     } catch (error) {
-      console.error('Error in updateComputerRequestStatus controller:', error);
-      res.status(500).json({
-        error: 'Internal server error',
-        message: error instanceof Error ? error.message : 'Unknown error occurred'
-      });
+      sendHttpError(res, error)
     }
   }
 )

@@ -1,23 +1,7 @@
 import { PrismaClient } from '@prisma/client';
-import { IUserRequest, RequestStatus } from '../models/UserRequest';
+import { CreateUserRequestDTO, GetAllUserRequestsOptions, IUserRequest, RequestStatus, UpdateUserRequestStatusDTO } from '../models/UserRequest';
+import { HandleServiceError } from '../../../utils/ErrorHandler';
 const prisma = new PrismaClient();
-
-interface CreateUserRequestDTO {
-  name: string;
-  email: string;
-  area: string;
-  role: string;
-  team: string;
-}
-
-interface GetAllUserRequestsOptions {
-  team: string;
-}
-
-interface UpdateUserRequestStatusDTO {
-  id: string;
-  status: 'approved' | 'rejected';
-}
 
 export class UserRequestsService {
   public static async createUserRequest(data: CreateUserRequestDTO) : Promise<IUserRequest> {
@@ -34,6 +18,7 @@ export class UserRequestsService {
       });
       return userRequest as IUserRequest;
     } catch (error) {
+      console.error('Error in createUserRequest', error);
       throw new Error(`Error creating user request: ${error}`);
     }
   }
@@ -52,7 +37,8 @@ export class UserRequestsService {
       });
       return userRequests as IUserRequest[];
     } catch (error) {
-      throw new Error(`Error fetching user requests: ${error}`);
+      console.error('Error in getAllUserRequests', error);
+      throw HandleServiceError(error)
     }
   }
 
@@ -93,7 +79,8 @@ export class UserRequestsService {
       return result.userRequest as IUserRequest
 
     } catch (error) {
-      throw new Error(`Error updating user request status: ${error}`);
+      console.error('Error in updateUserRequestStatus', error);
+      throw HandleServiceError(error)
     }
   }
 } 

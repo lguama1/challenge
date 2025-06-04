@@ -1,11 +1,7 @@
 import { AccessRequestsService } from '../../access-requests/services/AccessRequestsService';
 import { ComputerRequestsService } from '../../computers/services/ComputerRequestsService';
 import { UserRequestsService } from '../../users/services/UserRequestsService';
-import { IHistoryResponse } from '../models/IHistoryResponse';
-
-interface GetAllHistoryOptions {
-  team: string;
-}
+import { GetAllHistoryOptions, IHistoryResponse } from '../models/IHistoryResponse';
 
 export class HistoryService {
   public static async getAllRequests(options: GetAllHistoryOptions): Promise<IHistoryResponse[]> {

@@ -21,4 +21,18 @@ export interface IComputerRequestResponse {
     team: string;
     status: RequestStatus;
     createdAt: Date;
-  } 
+}
+
+export interface CreateComputerRequestDTO {
+  email: string;
+  requestedSystem: string;
+}
+
+export interface GetAllComputerRequestsOptions {
+  team: string;
+}
+
+export interface UpdateComputerRequestStatusDTO {
+  id: string;
+  status: RequestStatus.APPROVED | RequestStatus.REJECTED;
+}

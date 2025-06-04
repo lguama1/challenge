@@ -1,11 +1,8 @@
 import { PrismaClient } from '@prisma/client';
-import { IUser } from '../models/User';
+import { GetAllUsersOptions, IUser } from '../models/User';
+import { HandleServiceError } from '../../../utils/ErrorHandler';
 
 const prisma = new PrismaClient();
-
-interface GetAllUsersOptions {
-  team: string;
-}
 
 export class UserService {
   public static async getAllUsers(options: GetAllUsersOptions): Promise<IUser[]> {
@@ -23,21 +20,27 @@ export class UserService {
       
       return users;
     } catch (error) {
-      throw new Error(`Error fetching users: ${error}`);
+      console.error('Error in getAllUsers', error);
+      throw HandleServiceError(error)
     }
   }
 
-  public static async getUserByEmail(email: string): Promise<IUser | null> {
+  public static async getUserByEmail(email: string): Promise<IUser> {
     try {
       const user = await prisma.user.findUnique({
         where: {
           email: email
         }
       });
+
+      if (!user) {
+        throw new Error("user not found")
+      }
       
       return user;
     } catch (error) {
-      throw new Error(`Error fetching user by email: ${error}`);
+      console.error('Error in getUserByEmail', error);
+      throw HandleServiceError(error)
     }
   }
 } 
