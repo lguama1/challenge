@@ -32,14 +32,12 @@ export class ComputerRequestsService {
   public static async getAllComputerRequests(options: GetAllComputerRequestsOptions): Promise<IComputerRequestResponse[]> {
     try {
       const { team } = options;
-      
       const users = await UserService.getAllUsers({ team });
 
       const usersMap = users.reduce<Record<string, IUser>>((acc, user) => {
         acc[user.id] = user
         return acc
       }, {})
-
 
       const computerRequests = await prisma.computerRequest.findMany({
         where: {
@@ -49,7 +47,7 @@ export class ComputerRequestsService {
           createdAt: 'desc'
         }
       });
-      
+
       return computerRequests.map(request => ({
         email: usersMap[request.userId].email,
         ...request,
@@ -72,31 +70,33 @@ export class ComputerRequestsService {
                   status: data.status
                 }
               });
-        
-        
+
             if (computerRequest.status !== "approved") {
               return  computerRequest  
             }
-            
+
+            const computersAssignment = await tx.computerAssignment.findMany();
+            const excludedComputerIds = computersAssignment.map(computer => computer.computerId);
             const computer = await tx.computer.findFirst({
                 where: {
-                  operatingSystem: computerRequest.requestedSystem
+                  operatingSystem: computerRequest.requestedSystem,
+                  id: {
+                    notIn: excludedComputerIds
+                  }
                 }
             });
-            
-            if (computer) {
-                await tx.computerAssignment.create({
-                    data: {
-                      computerId: computer.id,
-                      userId: computerRequest.userId,
-                    }
-                  });
-            }
 
+            if (computer) {
+              await tx.computerAssignment.create({
+                data: {
+                  computerId: computer.id,
+                  userId: computerRequest.userId,
+                }
+              });
+            }
             return computerRequest
           })
-    
-  
+
       return {
         ...result,
         status: result.status as RequestStatus
