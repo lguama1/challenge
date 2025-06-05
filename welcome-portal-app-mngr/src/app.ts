@@ -46,7 +46,7 @@ const userController = new UserController(userService);
 UserRouter.get(
     '/users',
     validator.validate('get', '/v1/users'),
-    userController.GetAllUsers
+    userController.GetAllUsers.bind(userController)
 );
 app.use(fullApiPath, UserRouter);
 
@@ -56,12 +56,12 @@ const userRequestsController = new UserRequestsController(userRequestService);
 UserRequestRouter.post(
   '/user-requests',
   validator.validate('post', '/v1/user-requests'),
-  userRequestsController.CreateUserRequest
+  userRequestsController.CreateUserRequest.bind(userRequestsController)
 );
 UserRequestRouter.patch(
   '/user-requests/:id',
   validator.validate('patch', '/v1/user-requests/{id}'),
-  userRequestsController.UpdateUserRequestStatus
+  userRequestsController.UpdateUserRequestStatus.bind(userRequestsController)
 );
 app.use(fullApiPath, UserRequestRouter);
 
@@ -70,12 +70,12 @@ const computerService = new ComputerService(prisma, userService);
 const computerController = new ComputerController(computerService);
 ComputertRouter.get(
   '/computers',
-  computerController.GetAllComputers
+  computerController.GetAllComputers.bind(computerController)
 );
 ComputertRouter.get(
   '/computers/team',
   validator.validate('get', '/v1/computers/team'),
-  computerController.GetAllComputersForTeam
+  computerController.GetAllComputersForTeam.bind(computerController)
 );
 app.use(fullApiPath, ComputertRouter);
 
@@ -86,12 +86,12 @@ const computerRequestsController = new ComputerRequestsController(computerReques
 ComputerRequestsRouter.post(
   '/computer-requests',
   validator.validate('post', '/v1/computer-requests'),
-  computerRequestsController.CreateComputerRequest
+  computerRequestsController.CreateComputerRequest.bind(computerRequestsController)
 );
 ComputerRequestsRouter.patch(
   '/computer-requests/:id',
   validator.validate('patch', '/v1/computer-requests/{id}'),
-    computerRequestsController.UpdateComputerRequestStatus
+    computerRequestsController.UpdateComputerRequestStatus.bind(computerRequestsController)
 );
 app.use(fullApiPath, ComputerRequestsRouter);
 
@@ -101,12 +101,12 @@ const accessRequestsController = new AccessRequestController(accessRequestsServi
 AccessRequestsRouter.post(
   '/access-requests',
   validator.validate('post', '/v1/access-requests'),
-  accessRequestsController.CreateAccessRequest
+  accessRequestsController.CreateAccessRequest.bind(accessRequestsController)
 );
 AccessRequestsRouter.patch(
   '/access-requests/:id',
   validator.validate('patch', '/v1/access-requests/{id}'),
-  accessRequestsController.UpdateAccessRequestStatus
+  accessRequestsController.UpdateAccessRequestStatus.bind(accessRequestsController)
 );
 app.use(fullApiPath, AccessRequestsRouter);
 
@@ -116,7 +116,7 @@ const historyController = new HistoryController(historyService);
 HistoryRouter.get(
   '/history/requests',
   validator.validate('get', '/v1/history/requests'),
-  historyController.GetAllRequests
+   historyController.GetAllRequests.bind(historyController)
 );
 app.use(fullApiPath, HistoryRouter);
 app.use(TransformErrors.parseErrors);
