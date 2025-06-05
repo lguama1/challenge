@@ -7,7 +7,8 @@
     "build": "dotenv -e environments/.env.pr -- next build",
     "start": "next start",
     "lint": "next lint",
-    "lint:fix": "next lint --fix"
+    "lint:fix": "next lint --fix",
+    "test": "echo TODO"
   },
   "dependencies": {
     "@npm-bbta/bbog-dig-dt-sherpa-lib": "^6.2.3",

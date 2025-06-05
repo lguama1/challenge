@@ -1,12 +1,17 @@
 import { PrismaClient } from '@prisma/client';
 import { CreateUserRequestDTO, GetAllUserRequestsOptions, IUserRequest, RequestStatus, UpdateUserRequestStatusDTO } from '../models/UserRequest';
 import { HandleServiceError } from '../../../utils/ErrorHandler';
-const prisma = new PrismaClient();
 
 export class UserRequestsService {
-  public static async createUserRequest(data: CreateUserRequestDTO) : Promise<IUserRequest> {
+  private readonly prismaClient: PrismaClient;
+
+  constructor(prisma: PrismaClient) {
+    this.prismaClient = prisma;
+  }
+
+  async createUserRequest(data: CreateUserRequestDTO) : Promise<IUserRequest> {
     try {
-      const userRequest = await prisma.userRequest.create({
+      const userRequest = await this.prismaClient.userRequest.create({
         data: {
           name: data.name,
           email: data.email,
@@ -23,11 +28,10 @@ export class UserRequestsService {
     }
   }
 
-  public static async getAllUserRequests(options: GetAllUserRequestsOptions): Promise<IUserRequest[]> {
+  async getAllUserRequests(options: GetAllUserRequestsOptions): Promise<IUserRequest[]> {
     try {
       const { team } = options;
-
-      const userRequests = await prisma.userRequest.findMany({
+      const userRequests = await this.prismaClient.userRequest.findMany({
         where: {
           team: team
         },
@@ -38,15 +42,13 @@ export class UserRequestsService {
       return userRequests as IUserRequest[];
     } catch (error) {
       console.error('Error in getAllUserRequests', error);
-      throw HandleServiceError(error)
+      throw HandleServiceError(error);
     }
   }
 
-  public static async updateUserRequestStatus(data: UpdateUserRequestStatusDTO): Promise<IUserRequest> {
+  async updateUserRequestStatus(data: UpdateUserRequestStatusDTO): Promise<IUserRequest> {
     try {
-
-      const result = await prisma.$transaction(async (tx) => {
-
+      const result = await this.prismaClient.$transaction(async (tx) => {
         const userRequest = await tx.userRequest.update({
           where: {
             id: data.id
@@ -55,11 +57,9 @@ export class UserRequestsService {
             status: data.status as RequestStatus
           }
         });
-  
-        userRequest as IUserRequest;
     
         if (data.status !== "approved") {
-          return  { userRequest }
+          return  { userRequest };
         }
         
         const user = await tx.user.create({
@@ -71,13 +71,10 @@ export class UserRequestsService {
             role: userRequest.role,
           },
         })
-    
-        return { userRequest, user }
+        return { userRequest, user };
       })
 
-
-      return result.userRequest as IUserRequest
-
+      return result.userRequest as IUserRequest;
     } catch (error) {
       console.error('Error in updateUserRequestStatus', error);
       throw HandleServiceError(error)

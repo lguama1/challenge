@@ -4,15 +4,28 @@ import { UserRequestsService } from '../../users/services/UserRequestsService';
 import { GetAllHistoryOptions, IHistoryResponse } from '../models/IHistoryResponse';
 
 export class HistoryService {
-  public static async getAllRequests(options: GetAllHistoryOptions): Promise<IHistoryResponse[]> {
+  private readonly accessRequestsService: AccessRequestsService;
+  private readonly computerRequestsService: ComputerRequestsService;
+  private readonly userRequestsService: UserRequestsService;
+
+  constructor(
+    accessRequestsService: AccessRequestsService,
+    computerRequestsService: ComputerRequestsService,
+    userRequestsService: UserRequestsService,
+  ) {
+    this.accessRequestsService = accessRequestsService;
+    this.computerRequestsService = computerRequestsService;
+    this.userRequestsService = userRequestsService;
+  }
+
+  async getAllRequests(options: GetAllHistoryOptions): Promise<IHistoryResponse[]> {
     try {
       const { team } = options;
 
-      // Get all requests from different services
       const [accessRequests, computerRequests, userRequests] = await Promise.all([
-        AccessRequestsService.getAllAccessRequests({ team }),
-        ComputerRequestsService.getAllComputerRequests({ team }),
-        UserRequestsService.getAllUserRequests({ team })
+        this.accessRequestsService.getAllAccessRequests({ team }),
+        this.computerRequestsService.getAllComputerRequests({ team }),
+        this.userRequestsService.getAllUserRequests({ team })
       ]);
 
       const accessRequestsHistory = accessRequests.map(request => ({

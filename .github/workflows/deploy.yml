@@ -39,6 +39,11 @@ jobs:
           cd ${{ matrix.project }}
           npm run build
 
+      - name: Tests
+        run: |
+          cd ${{ matrix.project }}
+          npm run test
+
   ## ------------------------
   ## 🚀 CD: Deploy IaC
   ## ------------------------

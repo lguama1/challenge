@@ -1,27 +1,22 @@
-import { Request, Response, Router } from 'express';
+import { Request, Response } from 'express';
 import { HistoryService } from '../services/HistoryService';
-import OpenApiValidatorProvider from '../../../utils/OpenApiValidatorProvider';
+import { sendHttpError } from '../../../utils/ErrorHandler';
 
-const HistoryController = Router()
-const validator = OpenApiValidatorProvider.getValidator();
+export class HistoryController {
+  private readonly historyService: HistoryService;
 
-HistoryController.get(
-  '/history/requests',
-  validator.validate('get', '/v1/history/requests'),
-  async (req: Request, res: Response) =>{
+  constructor(historyService: HistoryService) {
+    this.historyService = historyService;
+  }
+
+  async GetAllRequests(req: Request, res: Response) {
     try {
-      const requests = await HistoryService.getAllRequests({
+      const requests = await this.historyService.getAllRequests({
         team: 'team'
       });
-       res.status(200).json(requests);
+      res.status(200).json(requests);
     } catch (error) {
-      console.error('Error in getAllRequests controller:', error);
-      res.status(500).json({
-        error: 'Internal server error',
-        message: error instanceof Error ? error.message : 'Unknown error occurred'
-      });
+      sendHttpError(res, error);
     }
   }
-)
-
-export { HistoryController };
+}

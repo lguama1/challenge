@@ -10,14 +10,22 @@ import { UserService } from '../../users/services/UserService';
 import { IUser } from '../../users/models/User';
 import { HandleServiceError } from '../../../utils/ErrorHandler';
 
-const prisma = new PrismaClient();
-
 export class AccessRequestsService {
-  public static async createAccessRequest(data: CreateAccessRequestDTO): Promise<IAccessRequest> {
-    try {
-      const user = await UserService.getUserByEmail(data.email);
+  private readonly prismaClient: PrismaClient;
+  private readonly userService: UserService;
 
-      const accessRequest = await prisma.accessRequest.create({
+  constructor(
+    prisma: PrismaClient,
+    userService: UserService
+  ) {
+    this.prismaClient = prisma;
+    this.userService = userService;
+  }
+
+  async createAccessRequest(data: CreateAccessRequestDTO): Promise<IAccessRequest> {
+    try {
+      const user = await this.userService.getUserByEmail(data.email);
+      const accessRequest = await this.prismaClient.accessRequest.create({
         data: {
           userId: user.id,
           requestedAccess: data.requestedAccess.join(','),
@@ -25,7 +33,6 @@ export class AccessRequestsService {
           team: user.team
         },
       });
-
       return {
         ...accessRequest,
         requestedAccess: accessRequest.requestedAccess.split(','),
@@ -33,23 +40,20 @@ export class AccessRequestsService {
       };
     } catch (error) {
       console.error('Error in createAccessRequest', error);
-      throw HandleServiceError(error)  
+      throw HandleServiceError(error);
     }
   }
 
-  public static async getAllAccessRequests(options: GetAllAccessRequestsOptions): Promise<IAccessRequestResponse[]> {
+  async getAllAccessRequests(options: GetAllAccessRequestsOptions): Promise<IAccessRequestResponse[]> {
     try {
       const { team } = options;
-      
-      const users = await UserService.getAllUsers({ team });
-
+      const users = await this.userService.getAllUsers({ team });
       const usersMap = users.reduce<Record<string, IUser>>((acc, user) => {
         acc[user.id] = user
         return acc
-      }, {})
+      }, {});
 
-
-      const accessRequests = await prisma.accessRequest.findMany({
+      const accessRequests = await this.prismaClient.accessRequest.findMany({
         where: {
           team: team
         },
@@ -66,13 +70,13 @@ export class AccessRequestsService {
       }));
     } catch (error) {
       console.error('Error in getAllAccessRequests', error);
-      throw HandleServiceError(error)  
+      throw HandleServiceError(error);
     }
   }
 
-  public static async updateAccessRequestStatus(data: UpdateAccessRequestStatusDTO): Promise<IAccessRequest> {
+  async updateAccessRequestStatus(data: UpdateAccessRequestStatusDTO): Promise<IAccessRequest> {
     try {
-      const accessRequest = await prisma.accessRequest.update({
+      const accessRequest = await this.prismaClient.accessRequest.update({
         where: {
           id: data.id
         },
@@ -80,8 +84,6 @@ export class AccessRequestsService {
           status: data.status
         }
       });
-
-  
       return {
         ...accessRequest,
         requestedAccess: accessRequest.requestedAccess.split(','),
@@ -89,7 +91,7 @@ export class AccessRequestsService {
       };
     } catch (error) {
       console.error('Error in updateAccessRequestStatus', error);
-      throw HandleServiceError(error)  
+      throw HandleServiceError(error);
     }
   }
 } 

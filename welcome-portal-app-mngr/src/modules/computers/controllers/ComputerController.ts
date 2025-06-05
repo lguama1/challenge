@@ -1,37 +1,30 @@
-import { Request, Response, Router } from 'express';
+import { Request, Response } from 'express';
 import { ComputerService } from '../services/ComputerService';
-import OpenApiValidatorProvider from '../../../utils/OpenApiValidatorProvider';
 import { sendHttpError } from '../../../utils/ErrorHandler';
 
-const ComputerController = Router();
-const validator = OpenApiValidatorProvider.getValidator();
+export class ComputerController {
+  private readonly computerService: ComputerService;
 
-ComputerController.get(
-  '/computers',
-  //validator.validate('get', '/v1/computers'),
-  async (req: Request, res: Response) => {
+  constructor(computerService: ComputerService) {
+    this.computerService = computerService;
+  }
+
+  async GetAllComputers (req: Request, res: Response) {
     try {
-      const computers = await ComputerService.getAllComputers();
+      const computers = await this.computerService.getAllComputers();
       res.status(200).json(computers);
     } catch (error) {
-      sendHttpError(res, error)
+      sendHttpError(res, error);
     }
   }
-)
-
-ComputerController.get(
-  '/computers/team',
-  validator.validate('get', '/v1/computers/team'),
-  async (req: Request, res: Response) => {
+  async GetAllComputersForTeam(req: Request, res: Response) {
     try {
-      const computers = await ComputerService.getAllComputersForTeam({
+      const computers = await this.computerService.getAllComputersForTeam({
         team: 'team'
       });
       res.status(200).json(computers);
     } catch (error) {
-      sendHttpError(res, error)
+      sendHttpError(res, error);
     }
   }
-)
-
-export { ComputerController };
+}

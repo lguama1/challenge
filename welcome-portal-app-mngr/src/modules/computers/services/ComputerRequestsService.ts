@@ -4,13 +4,23 @@ import { UserService } from '../../users/services/UserService';
 import { IUser } from '../../users/models/User';
 import { HandleServiceError } from '../../../utils/ErrorHandler';
 
-const prisma = new PrismaClient();
 export class ComputerRequestsService {
-  public static async createComputerRequest(data: CreateComputerRequestDTO): Promise<IComputerRequest> {
-    try {
-      const user = await UserService.getUserByEmail(data.email);
+  private readonly prismaClient: PrismaClient;
+  private readonly userService: UserService;
 
-      const computerRequest = await prisma.computerRequest.create({
+  constructor(
+    prisma: PrismaClient,
+    userService: UserService
+  ) {
+    this.prismaClient = prisma;
+    this.userService = userService;
+  }
+
+  async createComputerRequest(data: CreateComputerRequestDTO): Promise<IComputerRequest> {
+    try {
+      const user = await this.userService.getUserByEmail(data.email);
+
+      const computerRequest = await this.prismaClient.computerRequest.create({
         data: {
           userId: user.id,
           requestedSystem: data.requestedSystem,
@@ -25,21 +35,21 @@ export class ComputerRequestsService {
       };
     } catch (error) {
       console.error('Error in createComputerRequest', error);
-      throw HandleServiceError(error)    
+      throw HandleServiceError(error);  
     }
   }
 
-  public static async getAllComputerRequests(options: GetAllComputerRequestsOptions): Promise<IComputerRequestResponse[]> {
+  async getAllComputerRequests(options: GetAllComputerRequestsOptions): Promise<IComputerRequestResponse[]> {
     try {
       const { team } = options;
-      const users = await UserService.getAllUsers({ team });
+      const users = await this.userService.getAllUsers({ team });
 
       const usersMap = users.reduce<Record<string, IUser>>((acc, user) => {
         acc[user.id] = user
         return acc
       }, {})
 
-      const computerRequests = await prisma.computerRequest.findMany({
+      const computerRequests = await this.prismaClient.computerRequest.findMany({
         where: {
           team: team
         },
@@ -55,47 +65,47 @@ export class ComputerRequestsService {
       }));
     } catch (error) {
       console.error('Error in getAllComputerRequests', error);
-      throw HandleServiceError(error)   
+      throw HandleServiceError(error);
     }
   }
 
-  public static async updateComputerRequestStatus(data: UpdateComputerRequestStatusDTO): Promise<IComputerRequest> {
+  async updateComputerRequestStatus(data: UpdateComputerRequestStatusDTO): Promise<IComputerRequest> {
     try {
-        const result = await prisma.$transaction(async (tx) => {
-            const computerRequest = await tx.computerRequest.update({
-                where: {
-                  id: data.id
-                },
-                data: {
-                  status: data.status
-                }
-              });
+      const result = await this.prismaClient.$transaction(async (tx) => {
+        const computerRequest = await tx.computerRequest.update({
+          where: {
+            id: data.id
+          },
+          data: {
+            status: data.status
+          }
+        });
 
-            if (computerRequest.status !== "approved") {
-              return  computerRequest  
+        if (computerRequest.status !== "approved") {
+          return  computerRequest  
+        }
+
+        const computersAssignment = await tx.computerAssignment.findMany();
+        const excludedComputerIds = computersAssignment.map(computer => computer.computerId);
+        const computer = await tx.computer.findFirst({
+          where: {
+            operatingSystem: computerRequest.requestedSystem,
+            id: {
+              notIn: excludedComputerIds
             }
+          }
+        });
 
-            const computersAssignment = await tx.computerAssignment.findMany();
-            const excludedComputerIds = computersAssignment.map(computer => computer.computerId);
-            const computer = await tx.computer.findFirst({
-                where: {
-                  operatingSystem: computerRequest.requestedSystem,
-                  id: {
-                    notIn: excludedComputerIds
-                  }
-                }
-            });
-
-            if (computer) {
-              await tx.computerAssignment.create({
-                data: {
-                  computerId: computer.id,
-                  userId: computerRequest.userId,
-                }
-              });
+        if (computer) {
+          await tx.computerAssignment.create({
+            data: {
+              computerId: computer.id,
+              userId: computerRequest.userId,
             }
-            return computerRequest
-          })
+          });
+        }
+        return computerRequest
+      })
 
       return {
         ...result,
@@ -103,7 +113,7 @@ export class ComputerRequestsService {
       };
     } catch (error) {
       console.error('Error in updateComputerRequestStatus', error);
-      throw HandleServiceError(error)   
+      throw HandleServiceError(error);
     }
   }
 } 

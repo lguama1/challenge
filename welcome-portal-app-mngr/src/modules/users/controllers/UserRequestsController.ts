@@ -1,50 +1,44 @@
-import { Request, Response, Router } from 'express';
+import { Request, Response } from 'express';
 import { UserRequestsService } from '../services/UserRequestsService';
-import OpenApiValidatorProvider from '../../../utils/OpenApiValidatorProvider';
 import { sendHttpError } from '../../../utils/ErrorHandler';
 
-const UserRequestsController = Router();
-const validator = OpenApiValidatorProvider.getValidator();
+export class UserRequestsController {
+  private readonly userRequestsService: UserRequestsService;
 
-UserRequestsController.post(
-  '/user-requests',
-  validator.validate('post', '/v1/user-requests'),
-  async (req: Request, res: Response) => {
+  constructor(userRequestsService: UserRequestsService) {
+    this.userRequestsService = userRequestsService;
+  }
+
+  async CreateUserRequest(req: Request, res: Response)  {
     try {
       const { name, email, area, role } = req.body;
-      const userRequest = await UserRequestsService.createUserRequest({
+      const userRequest = await this.userRequestsService.createUserRequest({
         name,
         email,
         area,
         role,
         team: 'team'
       });
-
       res.status(201).json(userRequest);
     } catch (error) {
-      sendHttpError(res, error)
+      sendHttpError(res, error);
     }
   }
-)
 
-UserRequestsController.patch(
-  '/user-requests/:id',
-  validator.validate('patch', '/v1/user-requests/{id}'),
-  async (req: Request, res: Response) =>{
+  async UpdateUserRequestStatus(req: Request, res: Response)  {
     try {
       const { id } = req.params;
       const { status } = req.body;
 
-      const userRequest = await UserRequestsService.updateUserRequestStatus({
+      const userRequest = await this.userRequestsService.updateUserRequestStatus({
         id,
         status
       });
 
       res.status(200).json(userRequest);
     } catch (error) {
-      sendHttpError(res, error)
+      sendHttpError(res, error);
     }
   }
-)
+}
 
-export { UserRequestsController };
